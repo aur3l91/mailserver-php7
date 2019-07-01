@@ -320,7 +320,7 @@ echo ""
 echo -e "${CGREEN}-> Installation de postfix, postfix-mysql et PHP-IMAP ${CEND}"
 echo ""
 
-# php5-imap pour Postfixadmin & php5-curl pour rainloop
+# php-imap pour Postfixadmin & php-curl pour rainloop
 apt-get install -y postfix postfix-mysql php-imap php-curl
 
 if [[ $? -ne 0 ]]; then
@@ -519,7 +519,7 @@ server {
 
     location ~* \.php$ {
         include       /etc/nginx/fastcgi_params;
-        fastcgi_pass  unix:/var/run/php-fpm.sock;
+        fastcgi_pass  unix:/var/run/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
     }
@@ -543,7 +543,7 @@ server {
 
     location ~* \.php$ {
         include       /etc/nginx/fastcgi_params;
-        fastcgi_pass  unix:/var/run/php-fpm.sock;
+        fastcgi_pass  unix:/var/run/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
     }
@@ -552,7 +552,7 @@ EOF
 fi
 
 echo -e "${CGREEN}-> Redémarrage de PHP-FPM.${CEND}"
-service php-fpm restart
+service php7.3-fpm restart
 
 echo -e "${CGREEN}-> Redémarrage de nginx pour prendre en compte le nouveau vhost.${CEND}"
 service nginx restart
@@ -1391,7 +1391,7 @@ server {
 
     location ~* \.php$ {
         include       /etc/nginx/fastcgi_params;
-        fastcgi_pass  unix:/var/run/php-fpm.sock;
+        fastcgi_pass  unix:/var/run/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
     }
@@ -1422,7 +1422,7 @@ server {
 
     location ~* \.php$ {
         include       /etc/nginx/fastcgi_params;
-        fastcgi_pass  unix:/var/run/php7-fpm.sock;
+        fastcgi_pass  unix:/var/run/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
     }
@@ -1431,7 +1431,7 @@ EOF
 fi
 
 echo -e "${CGREEN}-> Redémarrage de PHP-FPM.${CEND}"
-service php-fpm restart
+service php7.3-fpm restart
 echo -e "${CGREEN}-> Redémarrage de nginx pour prendre en compte le nouveau vhost.${CEND}"
 service nginx restart
 
